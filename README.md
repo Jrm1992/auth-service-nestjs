@@ -1,3 +1,5 @@
+# NestJS Authentication Project
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -22,52 +24,119 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a simple and straightforward NestJS project for implementing user authentication using Prisma ORM, JWT (JSON Web Tokens), Bcrypt for password hashing, Class-Validator for input validation, Class-Transformer for data transformation, and Passport for authentication.
 
-## Installation
+## Getting Started
 
-```bash
-$ npm install
-```
+Follow these steps to set up and run this project on your local machine.
 
-## Running the app
+### Prerequisites
 
-```bash
-# development
-$ npm run start
+Before you begin, ensure you have Node.js and npm (Node Package Manager) installed on your machine. You'll also need a PostgreSQL database to store user information.
 
-# watch mode
-$ npm run start:dev
+### Installation
 
-# production mode
-$ npm run start:prod
-```
+1. Clone this repository to your local machine:
 
-## Test
+   ```bash
+   git clone https://github.com/your-username/nestjs-authentication-project.git
+   ```
 
-```bash
-# unit tests
-$ npm run test
+2. Navigate to the project directory:
 
-# e2e tests
-$ npm run test:e2e
+   ```bash
+   cd nestjs-authentication-project
+   ```
 
-# test coverage
-$ npm run test:cov
-```
+3. Install the project dependencies:
 
-## Support
+   ```bash
+   npm install
+   ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Configuration
 
-## Stay in touch
+1. Create a `.env` file in the project's root directory and set the following environment variables:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   ```dotenv
+   DATABASE_URL=postgresql://username:password@localhost:5432/database
+   JWT_SECRET=mysecretkey
+   ```
+
+   Replace `username`, `password`, `localhost`, `5432`, `database`, and `mysecretkey` with your PostgreSQL database credentials and a secret key for JWT.
+
+### Database Migration
+
+1. Run the Prisma migration to create the necessary database tables:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+2. Seed the database with initial data (optional):
+
+   ```bash
+   npx prisma db seed
+   ```
+
+### Start the Application
+
+1. Start the NestJS application:
+
+   ```bash
+   npm run start
+   ```
+
+The application should now be running on `http://localhost:3000`.
+
+## Usage
+
+1. To register a new user, make a POST request to `http://localhost:3000/auth/register` with a JSON body containing `username` and `password`:
+
+   ```json
+   {
+     "username": "your-username",
+     "password": "your-password"
+   }
+   ```
+
+2. To log in and receive a JWT token, make a POST request to `http://localhost:3000/auth/login` with the same JSON body as above.
+
+3. To access protected routes, include the JWT token in the `Authorization` header with the `Bearer` prefix:
+
+   ```
+   Authorization: Bearer YOUR_JWT_TOKEN
+   ```
+
+4. To log out, simply delete the JWT token from the client.
+
+## Features
+
+- User registration and authentication
+- Password hashing with Bcrypt
+- JSON Web Token (JWT) authentication
+- Input validation using Class-Validator
+- Data transformation with Class-Transformer
+- PostgreSQL database storage with Prisma ORM
+- Passport for authentication strategies (if needed)
+
+## Contributors
+
+- [Your Name](https://github.com/your-username)
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgments
+
+- [NestJS](https://nestjs.com/)
+- [Prisma](https://www.prisma.io/)
+- [JWT](https://jwt.io/)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Class-Validator](https://github.com/typestack/class-validator)
+- [Class-Transformer](https://github.com/typestack/class-transformer)
+- [Passport](http://www.passportjs.org/)
+
+Feel free to modify and enhance this project according to your needs. Happy coding!
