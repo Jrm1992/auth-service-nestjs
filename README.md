@@ -90,26 +90,6 @@ Before you begin, ensure you have Node.js and npm (Node Package Manager) install
 
 The application should now be running on `http://localhost:3000`.
 
-## Usage
-
-1. To register a new user, make a POST request to `http://localhost:3000/auth/register` with a JSON body containing `username` and `password`:
-
-   ```json
-   {
-     "username": "your-username",
-     "password": "your-password"
-   }
-   ```
-
-2. To log in and receive a JWT token, make a POST request to `http://localhost:3000/auth/login` with the same JSON body as above.
-
-3. To access protected routes, include the JWT token in the `Authorization` header with the `Bearer` prefix:
-
-   ```
-   Authorization: Bearer YOUR_JWT_TOKEN
-   ```
-
-4. To log out, simply delete the JWT token from the client.
 
 ## Features
 
